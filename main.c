@@ -18,14 +18,14 @@ void boardInitialize(){
 }
 
 void displayBoard(){
-    printf("---\n");
+    printf("\n");
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             printf("%c", board[i][j]);
         }
         printf("\n");
     }
-    printf("---\n");
+    printf("\n");
 }
 
 void makeaMove(){
@@ -79,8 +79,11 @@ void switchPlayer(){
 }
 
 int main (){
+    char answer;
+    int endGame;
+    do {
     boardInitialize();
-
+    
     while (!endGame){
         displayBoard();
         makeaMove();
@@ -92,9 +95,16 @@ int main (){
         }else if (verifyDraw()){
             displayBoard();
             printf("We have a Draw, Try Again!");
+            endGame = 1;
         }
-        
         switchPlayer();
     }
-    return 0;    
+
+        printf("Do you want to play again?(y/n): ");
+        scanf(" %c", &answer);
+    } while (answer == 'y' || answer == 'Y');
+
+    printf("See You Later");
+    return 0;  
+      
 }
