@@ -46,16 +46,13 @@ void makeaMove(){
 }
 
 int verifyWinner(){
-    for (int i = 0; i < 3; i++){
-        if (board[i][0] == actualPlayer && board[i][1] == actualPlayer && board[i][2] == actualPlayer){
+        if ((board[0][0] == actualPlayer && board[0][1] == actualPlayer && board[0][2] == actualPlayer) || (board[1][0] == actualPlayer && board[1][1] == actualPlayer && board[1][2] == actualPlayer) || (board[2][0] == actualPlayer && board[2][1] == actualPlayer && board[2][2] == actualPlayer)){
             return 1;
         }
-    }
-    for (int i = 0; i < 3; i++){
-        if (board[0][1] == actualPlayer && board[1][i] == actualPlayer && board[2][i] == actualPlayer){
+//vertical
+        if ((board[0][0] == actualPlayer && board[1][0] == actualPlayer && board[2][0] == actualPlayer) || (board[0][1] == actualPlayer && board[1][1] == actualPlayer && board[2][1] == actualPlayer) || (board[0][2] == actualPlayer && board[1][2] == actualPlayer && board[2][2] == actualPlayer)){
             return 1;
         }
-    }
     
         if ((board[0][0] == actualPlayer && board[1][1] == actualPlayer && board[2][2] == actualPlayer) || (board[0][2] == actualPlayer && board[1][1] == actualPlayer && board[2][0] == actualPlayer)){
             return 1;
@@ -80,7 +77,6 @@ void switchPlayer(){
 
 int main (){
     char answer;
-    int endGame;
     do {
     boardInitialize();
     
@@ -99,7 +95,7 @@ int main (){
         }
         switchPlayer();
     }
-
+        endGame = 0;
         printf("Do you want to play again?(y/n): ");
         scanf(" %c", &answer);
     } while (answer == 'y' || answer == 'Y');
